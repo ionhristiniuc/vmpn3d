@@ -8,6 +8,7 @@
         xmlns:toolbar="clr-namespace:PNCreator.Modules.Main.Toolbar"
         xmlns:menu="clr-namespace:PNCreator.Modules.Main.Menu" 
         xmlns:main="clr-namespace:PNCreator.Modules.Main"
+        xmlns:rules="clr-namespace:PNCreator.Modules.Rules"
         Icon="/PNCreator;component/Content/Icons/BlueIcon.ico"
         Title="PN 3D Creator" Height="740" Width="1370" Background="Transparent" WindowState="Maximized"
         KeyDown="WindowKeyDown" Closed="WindowClosed" Loaded="WindowLoaded"  Style="{StaticResource WindowStyle}">
@@ -86,6 +87,28 @@
                  
                     Positioniser
                 </Button>
+
+                <Button x:Name="rulesOptionBtn" Grid.Row="1" Grid.Column="2" Margin="7,200,-81,0"
+                    Click="OptionsButtonsClick" Style="{StaticResource CornerButtonStyle}">
+                    <Button.Triggers>
+                        <EventTrigger SourceName="rulesOptionBtn" RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation x:Name="rulesOptionPanelAnimation"
+                                    Storyboard.TargetName="rulesOptionPanel"
+                                    Storyboard.TargetProperty="Width" From="0" To="220" Duration="0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+
+                    Rules
+                </Button>
+
+                <ScrollViewer x:Name="rulesOptionPanel" Grid.RowSpan="3" Grid.Column="1" Visibility="Hidden" Margin="0,4,1,4" 
+                          HorizontalAlignment="Right" VerticalScrollBarVisibility="Auto" Width="0" >
+                    <rules:RulesPanel x:Name="rulesPropertiesPanel" IsEnabled="{Binding Path=IsNotReadonly}"/>
+                </ScrollViewer>
 
                 <ScrollViewer x:Name="positioniserOptionPanel" Grid.Column="1" Margin="0,4,0,4" IsEnabled="{Binding Path=IsChecked}"
                               Visibility="Hidden" VerticalScrollBarVisibility="Auto" Width="0" HorizontalAlignment="Right" Grid.RowSpan="3" >

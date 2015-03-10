@@ -1,23 +1,28 @@
-﻿D:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\MainWindow.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Formula Builder\Geometry Formula Builder\GeometryFormulaBuilder.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Help\HelpWindow.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Main\Menu\MainMenu.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\ArcPropertiesPanel.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\LocationPropertiesPanel.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\MembranePropertiesPanel.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\Panels\ArcPropertiesSetPanel.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\Panels\MultipleObjectPositionPanel.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\Panels\ShapePropertiesSetPanel.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\TransitionPropertiesPanel.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\ModelConfiguration\ModelConfiguration.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\NavigationMap\NavigationMap.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\ODL Editor\ODLEditorWindow.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Positioniser\PositioniserProperty.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Properties\Properties.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Simulation\AnimationSimulationWindow.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Simulation\EditLiveChartWindow.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Simulation\SimulationChooserWindow.xaml;;
-FD:\My works\Programes\C Sharp\WPF\vmpn3d\PNCreator\PNCreator\Modules\Simulation\SimulationWindow.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\MainWindow.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Formula Builder\Geometry Formula Builder\GeometryFormulaBuilder.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Help\HelpWindow.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Main\Menu\MainMenu.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\ArcPropertiesPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\LocationPropertiesPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\MembranePropertiesPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\Panels\ArcPropertiesSetPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\Panels\MultipleObjectPositionPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\Panels\ShapePropertiesSetPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Main\PNObjectProperties\TransitionPropertiesPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\ModelConfiguration\ModelConfiguration.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\NavigationMap\NavigationMap.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\ODL Editor\ODLEditorWindow.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Positioniser\PositioniserProperty.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Properties\Properties.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Rules\Panels\RulesArcPropertiesPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Rules\Panels\RulesLocationPropertiesPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Rules\Panels\RulesMembranePropertiesPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Rules\Panels\RulesTransitionPropertiesPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Rules\RulesPanel.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Simulation\AnimationSimulationWindow.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Simulation\EditLiveChartWindow.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Simulation\SimulationChooserWindow.xaml;;
+FD:\Programming\vmpn3d\PNCreator\PNCreator\Modules\Simulation\SimulationWindow.xaml;;
 

@@ -83,6 +83,7 @@ namespace PNCreator
                 }
                 objectOptionPanel.Visibility = Visibility.Visible;
                 positioniserOptionPanel.Visibility = Visibility.Hidden;
+                rulesOptionPanel.Visibility = Visibility.Hidden;
             }
             else if (btn.Equals(positioniserOptionBtn))
             {
@@ -93,6 +94,19 @@ namespace PNCreator
                 }
                 positioniserOptionPanel.Visibility = Visibility.Visible;
                 objectOptionPanel.Visibility = Visibility.Hidden;
+                rulesOptionPanel.Visibility = Visibility.Hidden;
+            }
+            else if (btn.Equals(rulesOptionBtn))
+            {
+                if (rulesOptionPanel.Visibility == Visibility.Visible)
+                {
+                    rulesOptionPanel.Visibility = Visibility.Hidden;
+                    return;
+                }
+                rulesOptionPanel.Visibility = Visibility.Visible;
+                objectOptionPanel.Visibility = Visibility.Hidden;
+                positioniserOptionPanel.Visibility = Visibility.Hidden;
+
             }
         }
 

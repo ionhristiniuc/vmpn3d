@@ -1,0 +1,33 @@
+﻿<rules:RulesPropertiesPanelBase x:Class="PNCreator.Modules.Rules.Panels.RulesLocationPropertiesPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:rules="clr-namespace:PNCreator.Modules.Rules.Panels">
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="80"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <TextBlock Text="Save history" Grid.Row="0" />
+    <TextBlock Text="Min Capacity" Grid.Row="1"/>
+    <TextBlock Text="Max Capacity" Grid.Row="2"/>
+    <TextBlock Name="TokenLevelTextBlock" Text="" Grid.Row="3"/>
+
+    <CheckBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"  Margin="3">
+        <CheckBox.ToolTip>
+            <ToolTip Content="Save simulation history for this object"/>
+        </CheckBox.ToolTip>
+    </CheckBox>
+    
+    <TextBox Name="MinCapacityTextBox" Grid.Column="1" Grid.Row="1" Margin="3"/>
+    <TextBox Name="MaxCapacityTextBox" Grid.Column="1" Grid.Row="2" Margin="3"/>
+    <TextBox Name="TokenLevelTextBox" Grid.Column="1" Grid.Row="3" Margin="3"/>
+
+</rules:RulesPropertiesPanelBase>

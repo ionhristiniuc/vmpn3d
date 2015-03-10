@@ -33,3 +33,9 @@ D:\My works\Programes\C Sharp\WPF\Petri Nets\12.2\MPN 3D Builder\ODLEditor\obj\D
 D:\My works\Programes\C Sharp\WPF\Petri Nets\12.2\MPN 3D Builder\ODLEditor\obj\Debug\ODLEditor.dll
 D:\My works\Programes\C Sharp\WPF\Petri Nets\12.2\MPN 3D Builder\ODLEditor\obj\Debug\ODLEditor.pdb
 D:\My works\Programes\C Sharp\WPF\PN 3D Creator\ODLEditor\obj\Debug\ODLEditor.csprojResolveAssemblyReference.cache
+D:\Programming\vmpn3d\ODLEditor\bin\Debug\ODLEditor.dll
+D:\Programming\vmpn3d\ODLEditor\bin\Debug\ODLEditor.pdb
+D:\Programming\vmpn3d\ODLEditor\bin\Debug\ICSharpCode.AvalonEdit.dll
+D:\Programming\vmpn3d\ODLEditor\obj\Debug\ODLEditor.csprojResolveAssemblyReference.cache
+D:\Programming\vmpn3d\ODLEditor\obj\Debug\ODLEditor.dll
+D:\Programming\vmpn3d\ODLEditor\obj\Debug\ODLEditor.pdb

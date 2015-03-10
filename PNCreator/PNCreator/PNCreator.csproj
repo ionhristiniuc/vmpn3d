@@ -151,6 +151,28 @@
     <Compile Include="Modules\Main\PNObjectProperties\Panels\MultipleObjectPositionPanel.xaml.cs">
       <DependentUpon>MultipleObjectPositionPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Rules\Panels\PanelExpender.xaml.cs">
+      <DependentUpon>PanelExpender.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Rules\Panels\RulesArcPropertiesPanel.xaml.cs">
+      <DependentUpon>RulesArcPropertiesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Rules\Panels\RulesLocationPropertiesPanel.xaml.cs">
+      <DependentUpon>RulesLocationPropertiesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Rules\Panels\RulesMembranePropertiesPanel.xaml.cs">
+      <DependentUpon>RulesMembranePropertiesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Rules\Panels\RulesPropertiesPanelBase.cs" />
+    <Compile Include="Modules\Rules\Panels\RulesTransitionPropertiesPanel.xaml.cs">
+      <DependentUpon>RulesTransitionPropertiesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Rules\RulesPanel.xaml.cs">
+      <DependentUpon>RulesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Rules\RulesXML\RulesXMLReader.cs" />
+    <Compile Include="Modules\Rules\RulesXML\RulesXMLWriter.cs" />
+    <Compile Include="Modules\Rules\TypeNamePairs.cs" />
     <Compile Include="Modules\Simulation\ChartData.cs" />
     <Compile Include="Modules\Simulation\EditLiveChartWindow.xaml.cs">
       <DependentUpon>EditLiveChartWindow.xaml</DependentUpon>
@@ -312,6 +334,30 @@
     <Page Include="Modules\Properties\Properties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Rules\Panels\PanelExpender.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\Rules\Panels\RulesArcPropertiesPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\Rules\Panels\RulesLocationPropertiesPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\Rules\Panels\RulesMembranePropertiesPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\Rules\Panels\RulesTransitionPropertiesPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\Rules\RulesPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modules\Searching\Searching.xaml">
       <SubType>Designer</SubType>

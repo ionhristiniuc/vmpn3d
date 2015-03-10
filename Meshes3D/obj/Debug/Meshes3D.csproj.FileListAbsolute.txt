@@ -47,3 +47,10 @@ D:\My works\Programes\C Sharp\WPF\vmpn3d\Meshes3D\bin\Debug\3DTools.pdb
 D:\My works\Programes\C Sharp\WPF\vmpn3d\Meshes3D\obj\Debug\Meshes3D.csprojResolveAssemblyReference.cache
 D:\My works\Programes\C Sharp\WPF\vmpn3d\Meshes3D\obj\Debug\Meshes3D.dll
 D:\My works\Programes\C Sharp\WPF\vmpn3d\Meshes3D\obj\Debug\Meshes3D.pdb
+D:\Programming\vmpn3d\Meshes3D\bin\Debug\Meshes3D.dll
+D:\Programming\vmpn3d\Meshes3D\bin\Debug\Meshes3D.pdb
+D:\Programming\vmpn3d\Meshes3D\bin\Debug\3DTools.dll
+D:\Programming\vmpn3d\Meshes3D\bin\Debug\3DTools.pdb
+D:\Programming\vmpn3d\Meshes3D\obj\Debug\Meshes3D.csprojResolveAssemblyReference.cache
+D:\Programming\vmpn3d\Meshes3D\obj\Debug\Meshes3D.dll
+D:\Programming\vmpn3d\Meshes3D\obj\Debug\Meshes3D.pdb
