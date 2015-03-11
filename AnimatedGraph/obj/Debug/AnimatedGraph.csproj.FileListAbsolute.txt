@@ -64,3 +64,14 @@ D:\Programming\vmpn3d\AnimatedGraph\obj\Debug\AnimatedTreeViewer.baml
 D:\Programming\vmpn3d\AnimatedGraph\obj\Debug\AnimatedGraph.g.resources
 D:\Programming\vmpn3d\AnimatedGraph\obj\Debug\AnimatedGraph.dll
 D:\Programming\vmpn3d\AnimatedGraph\obj\Debug\AnimatedGraph.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\bin\Debug\AnimatedGraph.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\bin\Debug\AnimatedGraph.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\obj\Debug\AnimatedGraph.csprojResolveAssemblyReference.cache
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\obj\Debug\AnimatedTreeViewer.g.cs
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\obj\Debug\AnimatedGraph_MarkupCompile.cache
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\obj\Debug\AnimatedGraph_MarkupCompile.lref
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\obj\Debug\AnimatedTreeViewer.baml
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\obj\Debug\AnimatedGraph.g.resources
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\obj\Debug\AnimatedGraph.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\AnimatedGraph\obj\Debug\AnimatedGraph.pdb

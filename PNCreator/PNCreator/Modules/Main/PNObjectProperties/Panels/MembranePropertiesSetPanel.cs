@@ -27,5 +27,10 @@ namespace PNCreator.Modules.Main.PNObjectProperties.Panels
             base.SetPNObject(pnObject);
             membranePanel.SetPNObject(pnObject);
         }
+
+        public void PopulateCoveredPnObjectsComboBox(Membrane membrane)
+        {
+            membranePanel.PopulateCoveredObjectsComboBox(membrane);
+        }
     }
 }

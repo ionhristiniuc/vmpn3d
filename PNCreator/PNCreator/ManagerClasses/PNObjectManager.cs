@@ -217,14 +217,14 @@ namespace PNCreator.ManagerClasses
         /// </summary>
         public void CoverObjectsByAllMembranes()
         {
-            //ISet<Membrane> membranes = new HashSet<Membrane>();
+            ISet<Membrane> membranes = new HashSet<Membrane>();
 
-            //InitializeMembranesTree(membranes);
+            InitializeMembranesTree(membranes);
 
-            //foreach (Membrane membrane in membranes)
-            //{
-            //    CoverObjectsByMembrane(membrane);
-            //}
+            foreach (Membrane membrane in membranes)
+            {
+                CoverObjectsByMembrane(membrane);
+            }
 
             //// FIXME Find a better way to detect identical names
             //foreach (PNObject pnObject in PNObjectRepository.PNObjects.Values)
@@ -243,10 +243,10 @@ namespace PNCreator.ManagerClasses
                
             //}
 
-            foreach (PNObject pnObject in PNObjectRepository.PNObjects.Values)
-            {
-                pnObject.Group = -1;
-            }
+            //foreach (PNObject pnObject in PNObjectRepository.PNObjects.Values)
+            //{
+            //    pnObject.Group = -1;
+            //}
         }
 
         /// <summary>

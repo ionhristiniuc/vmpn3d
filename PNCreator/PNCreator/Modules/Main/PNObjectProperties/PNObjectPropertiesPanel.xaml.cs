@@ -47,6 +47,7 @@ namespace PNCreator.Modules.Main.PNObjectProperties
             else if (pnObject is Membrane)
             {
                 membranePanel.SetPNObject(pnObject);
+                membranePanel.PopulateCoveredPnObjectsComboBox((Membrane)pnObject);
                 content.Children.Add(membranePanel); 
             }
             else if(pnObject is Arc3D)

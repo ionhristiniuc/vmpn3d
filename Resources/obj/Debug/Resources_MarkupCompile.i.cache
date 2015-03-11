@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\Programming\vmpn3d\Resources\obj\Debug\
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\Resources\obj\Debug\
 Resources
 none
 false
@@ -12,8 +12,8 @@ DEBUG;TRACE
 
 231363335342
 
-435489655
-21412265150
+4326640285
+21607202901
 UIStyles\Border.xaml;UIStyles\Button.xaml;UIStyles\CheckBox.xaml;UIStyles\ColorPicker.xaml;UIStyles\ComboBox.xaml;UIStyles\Expander.xaml;UIStyles\GridView.xaml;UIStyles\ListBox.xaml;UIStyles\Menu.xaml;UIStyles\Panels.xaml;UIStyles\PNBrushes.xaml;UIStyles\ProgressBar.xaml;UIStyles\RadioButton.xaml;UIStyles\Reflections.xaml;UIStyles\ScrollBar.xaml;UIStyles\ScrollViewer.xaml;UIStyles\Shared.xaml;UIStyles\Slider.xaml;UIStyles\TabControl.xaml;UIStyles\TextBlock.xaml;UIStyles\TextBox.xaml;UIStyles\ToolTip.xaml;UIStyles\Window.xaml;
 
 False

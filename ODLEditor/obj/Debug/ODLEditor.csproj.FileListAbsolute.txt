@@ -39,3 +39,9 @@ D:\Programming\vmpn3d\ODLEditor\bin\Debug\ICSharpCode.AvalonEdit.dll
 D:\Programming\vmpn3d\ODLEditor\obj\Debug\ODLEditor.csprojResolveAssemblyReference.cache
 D:\Programming\vmpn3d\ODLEditor\obj\Debug\ODLEditor.dll
 D:\Programming\vmpn3d\ODLEditor\obj\Debug\ODLEditor.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\ODLEditor\bin\Debug\ODLEditor.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\ODLEditor\bin\Debug\ODLEditor.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\ODLEditor\bin\Debug\ICSharpCode.AvalonEdit.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\ODLEditor\obj\Debug\ODLEditor.csprojResolveAssemblyReference.cache
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\ODLEditor\obj\Debug\ODLEditor.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\ODLEditor\obj\Debug\ODLEditor.pdb

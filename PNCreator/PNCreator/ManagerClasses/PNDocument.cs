@@ -11,6 +11,7 @@ using PNCreator.PNObjectsIerarchy;
 using PNCreator.Controls.CarcassControl;
 using PNCreator.Controls.VectorControl;
 using System.Globalization;
+using System.Linq;
 using PNCreator.Modules.Properties;
 using PNCreator.Controls.SectorControl;
 using PNCreator.Controls;
@@ -39,6 +40,7 @@ namespace PNCreator.ManagerClasses
             recentOpenedModels = new string[5];
             pathsCounter = 0;
         }
+
 
         #region Object properties
 
@@ -118,27 +120,129 @@ namespace PNCreator.ManagerClasses
         }
         #endregion
 
-        #region Save and open model
+        #region Copy and paste selected PnObjects
         /// <summary>
-        /// Save current net in file
+        /// Copy selected objects
         /// </summary>
-        /// <param name="fileName">Name of output file</param>
-        public void SaveNet(string fileName)
+        /// <param name="fileName">Name of the file where application stores copied objects</param>
+        /// <param name="selectedPnObjects">Selected Petri Network Objects</param>
+        public void CopySelectedPnObjects(string fileName, ICollection<PNObject> selectedPnObjects)
+        {
+            WriteToFile(fileName, selectedPnObjects);
+        }
+
+        public void CopySelectedMembrane(string fileName, Membrane membrane)
+        {
+            List<PNObject> objectsToCopy = new List<PNObject> { membrane };
+            GetMembraneObjects(objectsToCopy, membrane.ID);
+            WriteToFile(fileName, objectsToCopy);
+        }
+
+        private void GetMembraneObjects(List<PNObject> objectsToCopy, long membraneId)
+        {
+            objectsToCopy.AddRange(
+                from pnObject in PNObjectRepository.PNObjects.Values
+                where pnObject.Group == membraneId
+                select pnObject
+                );
+
+            var submembranes =
+                from pnObject in PNObjectRepository.PNObjects.Values
+                where pnObject is Membrane && pnObject.Group == membraneId
+                select (Membrane)pnObject;
+
+            foreach (Membrane membrane in submembranes)
+                GetMembraneObjects(objectsToCopy, membrane.ID);
+        }
+
+        /// <summary>
+        /// Paste copied objects
+        /// </summary>
+        /// <param name="fileName">Name of the file where application stores copied objects</param>
+        public PNObjectDictionary<long, PNObject> PasteCopiedPnObjects(string fileName)
+        {
+            var copiedPnObjects = new PNObjectDictionary<long, PNObject>();
+            var doc = new XmlDocument();
+            doc.Load(fileName);
+
+            XmlNodeList objectNodes = doc.GetElementsByTagName("obj");
+
+            long minId = (
+                from XmlNode objectNode in objectNodes
+                select Convert.ToInt64(objectNode.Attributes["ID"].InnerText)).Min();
+
+            if (PNObjectRepository.PNObjects.Count != 0)
+                IdGenerator.UpdateID(PNObjectRepository.PNObjects);
+
+            long id = IdGenerator.ID;
+            long minAllowedId = (id - minId) < 0 ? id : IdGenerator.ID - minId;
+
+            foreach (XmlNode objectNode in objectNodes)
+            {
+                PNObject pnObject = GetPNObjectFromNode(objectNode, minAllowedId);
+
+                copiedPnObjects.Add(pnObject.ID, pnObject);
+                PNObjectRepository.PNObjects.Add(pnObject.ID, pnObject);
+            }
+
+            if (PNObjectRepository.PNObjects.Count != 0)
+                IdGenerator.UpdateID(PNObjectRepository.PNObjects);
+
+            // correcting formulas
+            foreach (PNObject pnObject in copiedPnObjects.Values)
+            {
+                if (pnObject is IFormula)
+                {
+                    string formula = ((IFormula)pnObject).Formula;
+                    if (!string.IsNullOrEmpty(formula))
+                    {
+                        foreach (PNObject copiedPnObject in copiedPnObjects.Values)
+                            formula = formula.Replace("ID(" + copiedPnObject.ID + ")", copiedPnObject.Name);
+                    }
+
+                    ((IFormula)pnObject).Formula = formula;                    
+                }
+
+                if (pnObject is IExtendedFormula)
+                {
+                    string extendedFormula = ((IExtendedFormula)pnObject).TransitionGuardFormula;
+                    if (!string.IsNullOrEmpty(extendedFormula))
+                    {
+                        foreach (PNObject copiedPnObject in copiedPnObjects.Values)
+                            extendedFormula = extendedFormula.Replace("ID(" + copiedPnObject.ID + ")", copiedPnObject.Name);
+                    }
+
+                    ((IExtendedFormula)pnObject).TransitionGuardFormula = extendedFormula ?? string.Empty;                    
+                }
+            }            
+
+            var formulaManager = App.GetObject<FormulaManager.FormulaManager>();
+            formulaManager.IsNeedToCompile = true;
+
+            return copiedPnObjects;
+        }
+
+        // for saving model and for copying pnObjects
+        private void WriteToFile(string fileName, ICollection<PNObject> objectsToWrite)
         {
             XmlTextWriter writer = new XmlTextWriter(fileName, System.Text.Encoding.Unicode);
             writer.WriteStartDocument();
             writer.WriteStartElement("Net");
 
-            #region Save models
+            #region Write models
 
-            foreach (PNObject pnObject in PNObjectRepository.PNObjects.Values)
+            foreach (PNObject pnObject in objectsToWrite)
             {
                 writer.WriteStartElement("obj");
 
                 writer.WriteAttributeString("ID", pnObject.ID.ToString());
                 writer.WriteAttributeString("Name", pnObject.Name);
-                writer.WriteAttributeString("Group", pnObject.Group.ToString());
 
+                long group = -1;
+                // if membrane also is copied
+                if (pnObject.Group != -1 && objectsToWrite.Contains(PNObjectRepository.PNObjects[pnObject.Group]))
+                    group = pnObject.Group;
+                writer.WriteAttributeString("Group", group.ToString());
 
                 #region Write Arc
 
@@ -196,7 +300,7 @@ namespace PNCreator.ManagerClasses
                     if (pnObject.Type == PNObjectTypes.DiscreteLocation || pnObject.Type == PNObjectTypes.ContinuousLocation)
                     {
                         Location location = (Location)pnObject;
-     
+
                         if (pnObject.Type == PNObjectTypes.DiscreteLocation)
                         {
                             writer.WriteAttributeString("Type", "DL");
@@ -212,10 +316,17 @@ namespace PNCreator.ManagerClasses
                         writer.WriteAttributeString("MaxCapacity", location.MaxCapacity.ToString(CURRENT_CULTURE));
 
                         writer.WriteStartElement("InT");
-                        for (int j = 0; j < location.IncomeTransitionsID.Count; j++)
+
+                        int j = 0;
+                        foreach (long id in location.IncomeTransitionsID)
                         {
-                            writer.WriteAttributeString("id" + j.ToString(), location.IncomeTransitionsID[j].ToString());
+                            if (objectsToWrite.Any(obj => obj.ID == id))
+                            {
+                                writer.WriteAttributeString("id" + j.ToString(), id.ToString());
+                                ++j;
+                            }
                         }
+
                         writer.WriteEndElement();
                     }
                 #endregion
@@ -239,16 +350,28 @@ namespace PNCreator.ManagerClasses
                         writer.WriteAttributeString("OutL", transition.OutLocationAmount.ToString());
 
                         writer.WriteStartElement("InL");
-                        for (int j = 0; j < transition.IncomeLocationsID.Count; j++)
+                        int j = 0;
+                        foreach (long id in transition.IncomeLocationsID)
                         {
-                            writer.WriteAttributeString("id" + j.ToString(), transition.IncomeLocationsID[j].ToString());
+                            if (objectsToWrite.Any(obj => obj.ID == id))
+                            {
+                                writer.WriteAttributeString("id" + j.ToString(), id.ToString());
+                                ++j;
+                            }
                         }
+
                         writer.WriteEndElement();
                         writer.WriteStartElement("InSAL");
-                        for (int j = 0; j < transition.SALocations.Count; j++)
+                        j = 0;
+                        foreach (long id in transition.SALocations)
                         {
-                            writer.WriteAttributeString("id" + j.ToString(), transition.SALocations[j].ToString());
+                            if (objectsToWrite.Any(obj => obj.ID == id))
+                            {
+                                writer.WriteAttributeString("id" + j.ToString(), id.ToString());
+                                ++j;
+                            }
                         }
+
                         writer.WriteEndElement();
                     }
                     #endregion
@@ -297,16 +420,80 @@ namespace PNCreator.ManagerClasses
                     writer.WriteEndElement();
                 }
 
+                var objectNames =
+                    (from obj in PNObjectRepository.PNObjects.Values
+                     select obj.Name);
+
+                var objToWriteNames =
+                        from obj in objectsToWrite
+                        select obj.Name;
+
                 if (pnObject is IFormula)
                 {
                     writer.WriteStartElement("F");
-                    writer.WriteAttributeString("Str", ((IFormula)pnObject).Formula);
+
+                    string formula = ((IFormula)pnObject).Formula;
+                    if (!string.IsNullOrEmpty(formula))
+                    {
+                        bool contains =
+                            (from name in objectNames
+                             where formula.Contains(name) && !objToWriteNames.Contains(name)
+                             select name).Any();
+
+                        if (contains)
+                            formula = string.Empty;
+                        else
+                        {
+                            foreach (var o in objectsToWrite)
+                            {
+                                int index = formula.IndexOf(o.Name, StringComparison.Ordinal);
+                                if (index != -1)
+                                {
+                                    // if found name in formula replace with ID
+                                    if ( index + o.Name.Length == formula.Length
+                                         || !Char.IsLetterOrDigit(formula[index + o.Name.Length]) 
+                                         && formula[index + o.Name.Length] != '_')
+                                        formula = formula.Replace(o.Name, "ID(" + o.ID + ")");
+                                }
+                            }
+                        }
+                    }
+
+                    writer.WriteAttributeString("Str", formula);
                     writer.WriteEndElement();
                 }
                 if (pnObject is IExtendedFormula)
                 {
                     writer.WriteStartElement("BF");
-                    writer.WriteAttributeString("Str", ((IExtendedFormula)pnObject).TransitionGuardFormula);
+
+                    string formula = ((IExtendedFormula)pnObject).TransitionGuardFormula;
+                    if (!string.IsNullOrEmpty(formula))
+                    {
+                        bool contains =
+                            (from name in objectNames
+                             where formula.Contains(name) && !objToWriteNames.Contains(name)
+                             select name).Any();
+
+                        if (contains)
+                            formula = string.Empty;
+                        else
+                        {
+                            foreach (var o in objectsToWrite)
+                            {
+                                int index = formula.IndexOf(o.Name);
+                                if (index != -1)
+                                {
+                                    // if found name in formula replace with ID
+                                    if (index + o.Name.Length == formula.Length
+                                         || !Char.IsLetterOrDigit(formula[index + o.Name.Length])
+                                         && formula[index + o.Name.Length] != '_')
+                                        formula = formula.Replace(o.Name, "ID(" + o.ID + ")");
+                                }
+                            }
+                        }
+                    }
+
+                    writer.WriteAttributeString("Str", formula);
                     writer.WriteEndElement();
                 }
 
@@ -318,7 +505,18 @@ namespace PNCreator.ManagerClasses
             writer.WriteEndElement();
             writer.WriteEndDocument();
             writer.Close();
+        }
 
+        #endregion
+
+        #region Save and open model
+        /// <summary>
+        /// Save current net in file
+        /// </summary>
+        /// <param name="fileName">Name of output file</param>
+        public void SaveNet(string fileName)
+        {
+            WriteToFile(fileName, PNObjectRepository.PNObjects.Values);
             CurrentModelPath = fileName;
         }
 
@@ -329,46 +527,45 @@ namespace PNCreator.ManagerClasses
         /// <param name="fileName">Name of opened file</param>
         public PNObjectDictionary<long, PNObject> OpenNet(string fileName)
         {
-            var doc = new XmlDocument();
-            doc.Load(fileName);
-
-            XmlNodeList objectNodes = doc.GetElementsByTagName("obj");
-            foreach (XmlNode objectNode in objectNodes)
-            {
-
-                PNObject pnObject = GetPNObjectFromNode(objectNode);
-                PNObjectRepository.PNObjects.Add(pnObject.ID, pnObject);
-//                viewport.AddPNObject(pnObject);
-            }
-
-            //PNObjectNameUtil.TotalShapes = objManager.Shapes.Count;
-            //PNObjectNameUtil.TotalArcs = objManager.Arcs.Count;
-
+            PasteCopiedPnObjects(fileName);
             IdGenerator.UpdateID(PNObjectRepository.PNObjects);
-            var formulaManager = App.GetObject<FormulaManager.FormulaManager>();
-            formulaManager.IsNeedToCompile = true;
             CurrentModelPath = fileName;
 
             return PNObjectRepository.PNObjects;
         }
 
-
-
-        private PNObject GetPNObjectFromNode(XmlNode objectNode)
+        private PNObject GetPNObjectFromNode(XmlNode objectNode, long minAllowedId)
         {
             IdGenerator.ID = -1;
             PNObject pnObject = null;
             double value = 0;
             string objectType = objectNode.Attributes["Type"].InnerText;
             string doubleFormula = (objectNode["F"] != null) ? objectNode["F"].Attributes["Str"].InnerText : "";
-            
+
+            if (!string.IsNullOrEmpty(doubleFormula))
+            {
+                int index = 0;
+
+                while ((index = doubleFormula.IndexOf("ID(", index, StringComparison.Ordinal)) != -1)
+                {
+                    int startIndex = index = index + 3;
+                    while (doubleFormula[index] != ')')
+                        ++index;
+
+                    var idString = doubleFormula.Substring(startIndex, index - startIndex);
+                    doubleFormula = doubleFormula.Remove(startIndex, index - startIndex);
+                    doubleFormula = doubleFormula.Insert(startIndex, (Convert.ToInt64(idString) + minAllowedId).ToString());
+                }
+            }
+
+
             if (objectType.Equals("dA") || objectType.Equals("dIA") || objectType.Equals("dTA") ||
                           objectType.Equals("cA") || objectType.Equals("cIA") || objectType.Equals("cTA") || objectType.Equals("fA"))
             {
                 pnObject = new Arc3D();
                 value = Convert.ToDouble(objectNode.Attributes["Weight"].InnerText, CURRENT_CULTURE);
                 ((Arc3D)pnObject).Weight = value;
-                ReadArcProperties((Arc3D)pnObject, objectNode);
+                ReadArcProperties((Arc3D)pnObject, objectNode, minAllowedId); //****
             }
             else
             {
@@ -401,7 +598,7 @@ namespace PNCreator.ManagerClasses
 
                     foreach (XmlAttribute inT in objectNode["InT"].Attributes)
                     {
-                        location.IncomeTransitionsID.Add(Convert.ToInt64(inT.InnerText));
+                        location.IncomeTransitionsID.Add(Convert.ToInt64(inT.InnerText) + minAllowedId);
                     }
 
                 }
@@ -426,17 +623,37 @@ namespace PNCreator.ManagerClasses
                         ((ContinuousTransition)pnObject).Expectance = value;
                     }
                     Transition transition = (Transition)pnObject;
-                    transition.Guard = Convert.ToBoolean(objectNode.Attributes["Guard"].InnerText);
+                    transition.Guard = Convert.ToBoolean(objectNode.Attributes["Guard"].InnerText); // ***********
                     transition.OutLocationAmount = Convert.ToInt32(objectNode.Attributes["OutL"].InnerText);
-                    transition.TransitionGuardFormula = objectNode["BF"].Attributes["Str"].InnerText;
+                    string transitionGuardFormula = objectNode["BF"].Attributes["Str"].InnerText;
+
+                    if (!string.IsNullOrEmpty(transitionGuardFormula))
+                    {
+                        int index = 0;
+
+                        while ((index = transitionGuardFormula.IndexOf("ID(", index, StringComparison.Ordinal)) != -1)
+                        {
+                            int startIndex = index = index + 3;
+
+                            while (transitionGuardFormula[index] != ')')
+                                ++index;
+
+                            var idString = transitionGuardFormula.Substring(startIndex, index - startIndex);
+                            transitionGuardFormula = transitionGuardFormula.Remove(startIndex, index - startIndex);
+                            transitionGuardFormula = transitionGuardFormula.Insert(startIndex, (Convert.ToInt64(idString) + minAllowedId).ToString());
+                        }
+
+                        transition.TransitionGuardFormula = transitionGuardFormula;
+                    }
+
 
                     foreach (XmlAttribute inL in objectNode["InL"].Attributes)
                     {
-                        transition.IncomeLocationsID.Add(Convert.ToInt64(inL.InnerText));
+                        transition.IncomeLocationsID.Add(Convert.ToInt64(inL.InnerText) + minAllowedId);
                     }
                     foreach (XmlAttribute inSAL in objectNode["InSAL"].Attributes)
                     {
-                        transition.SALocations.Add(Convert.ToInt64(inSAL.InnerText));
+                        transition.SALocations.Add(Convert.ToInt64(inSAL.InnerText) + minAllowedId);
                     }
                 }
                 #endregion
@@ -463,10 +680,19 @@ namespace PNCreator.ManagerClasses
                 ((IFormula)pnObject).Formula = doubleFormula;
             }
 
-            pnObject.ID = Convert.ToInt64(objectNode.Attributes["ID"].InnerText);
+            pnObject.ID = Convert.ToInt64(objectNode.Attributes["ID"].InnerText) + minAllowedId;
             pnObject.Name = objectNode.Attributes["Name"].InnerText;
-            pnObject.Group = Convert.ToInt64(objectNode.Attributes["Group"].InnerText);
+            long group = Convert.ToInt64(objectNode.Attributes["Group"].InnerText);
+
+            pnObject.Group = group != -1 ? group + minAllowedId : -1;
             pnObject.Type = GetObjectType(objectType);
+
+            var names = from obj in PNObjectRepository.PNObjects.Values
+                        select obj.Name;
+
+            // if name already exists
+            if (names.Contains(pnObject.Name))
+                pnObject.Name = PNObjectNameUtil.GetPNObjectName(pnObject.Type) + pnObject.ID;
             pnObject.ValueInCanvas.Text = value.ToString();
 
             return pnObject;
@@ -529,12 +755,12 @@ namespace PNCreator.ManagerClasses
             return PNObjectTypes.None;
         }
 
-        private void ReadArcProperties(Arc3D arc, XmlNode objectNode)
+        private void ReadArcProperties(Arc3D arc, XmlNode objectNode, long minAllowedId)
         {
             arc.Thickness = PNProperties.ArcsThickness;
             arc.SetTexture(objectNode.Attributes["Texture"].InnerText);
-            arc.StartID = Convert.ToInt64(objectNode["Con"].Attributes["SID"].InnerText);
-            arc.EndID = Convert.ToInt64(objectNode["Con"].Attributes["EID"].InnerText);
+            arc.StartID = Convert.ToInt64(objectNode["Con"].Attributes["SID"].InnerText) + minAllowedId;
+            arc.EndID = Convert.ToInt64(objectNode["Con"].Attributes["EID"].InnerText) + minAllowedId;
 
             XmlNode spNode = objectNode["SP"];
             XmlNode mpNode = objectNode["MP"];
@@ -625,6 +851,7 @@ namespace PNCreator.ManagerClasses
         public void NewNet()
         {
             PNObjectRepository.PNObjects.Clear();
+            IdGenerator.ID = 0;
             CurrentModelPath = null;
             eventPublisher.ExecuteEvents(new NewNetEventArgs());
         }

@@ -78,7 +78,7 @@ namespace Meshes3D
         /// <returns></returns>
         public bool IsIntersectWith(Mesh3D mesh)
         {
-            return this.Geometry.Bounds.Contains(mesh.Geometry.Bounds);
+            return this.Geometry.Bounds.Contains(mesh.Geometry.Bounds.Location);
         }
 
         public Rect3D Bounds

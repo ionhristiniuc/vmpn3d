@@ -144,6 +144,14 @@ namespace PNCreator
                                 pnViewport.SetCameraPosition(pnObjectPicker.SelectedObject.Position);
                         }
                         break;
+                    case Key.C:
+                        if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+                            new CopyPNObjectsCommand().CopyPNObjects(pnObjectPicker.SelectedObjects);
+                        break;
+                    case Key.V:
+                        if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+                            new PastePNObjectsCommand().PastePNObjects();
+                        break;
                 }
 
         }
@@ -336,6 +344,12 @@ namespace PNCreator
                 {
                     pnViewport.AddPNObject(pnObject);
                 }
+            });
+
+            eventPublisher.Register((PastePNObjectsEventArgs args) =>
+            {
+                foreach (var pnObject in args.PNObjects.Values)
+                    pnViewport.AddPNObject(pnObject);
             });
 
             eventPublisher.Register((NewNetEventArgs args) =>

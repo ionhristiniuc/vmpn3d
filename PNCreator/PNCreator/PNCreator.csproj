@@ -132,10 +132,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\CopyPNObjectsCommand.cs" />
     <Compile Include="Commands\DeletePNObjectsCommand.cs" />
     <Compile Include="Commands\MPNCommands.cs" />
     <Compile Include="Commands\NewNetCommand.cs" />
     <Compile Include="Commands\OpenNetCommand.cs" />
+    <Compile Include="Commands\PastePNObjectsCommand.cs" />
     <Compile Include="Commands\SaveNetCommand.cs" />
     <Compile Include="Commands\SetFormulaCommand.cs" />
     <Compile Include="Commands\SetMeshCommand.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="ManagerClasses\EventManager\Events\FormulaProgressEventArgs.cs" />
     <Compile Include="ManagerClasses\EventManager\Events\HistoryDataAddedEventArgs.cs" />
     <Compile Include="ManagerClasses\EventManager\Events\MeshTransformChangedEventArgs.cs" />
+    <Compile Include="ManagerClasses\EventManager\Events\PastePNObjectsEventArgs.cs" />
     <Compile Include="ManagerClasses\EventManager\Events\PNObjectsValuesChangedEventArgs.cs" />
     <Compile Include="Modules\Help\HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>

@@ -201,3 +201,31 @@ D:\Programming\vmpn3d\MeshImporter\obj\Release\MeshImporter.Properties.Resources
 D:\Programming\vmpn3d\MeshImporter\obj\Release\MeshImporter.csproj.GenerateResource.Cache
 D:\Programming\vmpn3d\MeshImporter\obj\Release\MeshImporter.exe
 D:\Programming\vmpn3d\MeshImporter\obj\Release\MeshImporter.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\MeshImporter.exe.config
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\MeshImporter.exe
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\MeshImporter.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\3DTools.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\AnimatedGraph.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\Meshes3D.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\Resources.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\WindowsControl.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\J832.Common.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\3DTools.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\AnimatedGraph.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\Meshes3D.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\Resources.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\bin\Release\WindowsControl.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MeshImporter.csprojResolveAssemblyReference.cache
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MainWindow.baml
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\App.baml
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\AddMeshWindow.g.cs
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MainWindow.g.cs
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\App.g.cs
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MeshImporter_MarkupCompile.cache
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MeshImporter_MarkupCompile.lref
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\AddMeshWindow.baml
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MeshImporter.g.resources
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MeshImporter.Properties.Resources.resources
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MeshImporter.csproj.GenerateResource.Cache
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MeshImporter.exe
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\MeshImporter\obj\Release\MeshImporter.pdb

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using PNCreator.ManagerClasses.MeshPicker;
 using PNCreator.PNObjectsIerarchy;
 
 namespace PNCreator.Modules.Main.PNObjectProperties
@@ -13,12 +14,16 @@ namespace PNCreator.Modules.Main.PNObjectProperties
 
         private void CoveredObjectsComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-//              if (coveredObjectsCB.SelectedItem != null)
-//            {
-//                PNObject pnObject = (PNObject)coveredObjectsCB.SelectedItem;
-//                pnObjectPicker.SelectedObject = pnObject;
-//                ShowSelectedObjectProperties(pnObject);
-//            }
+            ComboBox coveredObjectsCb = (ComboBox)sender;
+            if (coveredObjectsCb.SelectedItem != null)
+            {
+                MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+                PNObject pnObject = (PNObject)coveredObjectsCb.SelectedItem;
+                PNObjectPicker objectPicker = mainWindow.pnObjectPicker;
+                objectPicker.SelectedObject = pnObject;
+                mainWindow.pnViewport.SetCameraPosition(pnObject.Position);
+                //mainWindow.ShowSelectedObjectProperties(pnObject)
+            }
         }
 
         public void SetPNObject(PNObject pnObject)
@@ -38,6 +43,11 @@ namespace PNCreator.Modules.Main.PNObjectProperties
             speedLabel.Visibility = visibility;
             speedTB.Visibility = visibility;
             formulaBtn.Visibility = visibility;
+        }
+
+        public void PopulateCoveredObjectsComboBox(Membrane membrane)
+        {
+            CoveredObjectsComboBox.ItemsSource = membrane.PNObjects;
         }
     }
 }

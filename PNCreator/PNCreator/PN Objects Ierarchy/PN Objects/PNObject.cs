@@ -353,8 +353,8 @@ namespace PNCreator.PNObjectsIerarchy
 
         public override string ToString()
         {
-            PNObject membane = PNObjectRepository.GetByKey(group);
-            return name + ((membane != null) ? "[" + membane.Name + "]" : "");
+            //PNObject membane = PNObjectRepository.GetByKey(group);
+            return name; //+ ((membane != null) ? "[" + membane.Name + "]" : "");
         }
 
         #region Члены IDisposable

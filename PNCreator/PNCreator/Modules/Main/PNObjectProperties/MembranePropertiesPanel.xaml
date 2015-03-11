@@ -21,7 +21,7 @@
 
     <TextBox Grid.Column="1" Grid.Row="0" Margin="3" Text="{Binding Path=Name, Mode=TwoWay}" />
     <TextBox Grid.Column="1" Grid.Row="1" IsEnabled="False" Margin="3" Text="{Binding Path=Group}" />
-    <ComboBox Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding Path=PNObjects}"
+    <ComboBox  x:Name="CoveredObjectsComboBox" Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding Path=PNObjects}"
               SelectionChanged="CoveredObjectsComboBoxSelectionChanged"/>
     <TextBox x:Name="speedTB" Grid.Column="1" Grid.Row="3" Margin="3" Text="{Binding Path=Speed, Mode=TwoWay}"
              Tag="{Binding}" PreviewKeyDown="ValueChangedTextBox"/>

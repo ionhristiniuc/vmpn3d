@@ -54,3 +54,10 @@ D:\Programming\vmpn3d\Meshes3D\bin\Debug\3DTools.pdb
 D:\Programming\vmpn3d\Meshes3D\obj\Debug\Meshes3D.csprojResolveAssemblyReference.cache
 D:\Programming\vmpn3d\Meshes3D\obj\Debug\Meshes3D.dll
 D:\Programming\vmpn3d\Meshes3D\obj\Debug\Meshes3D.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\Meshes3D\bin\Debug\Meshes3D.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\Meshes3D\bin\Debug\Meshes3D.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\Meshes3D\bin\Debug\3DTools.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\Meshes3D\bin\Debug\3DTools.pdb
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\Meshes3D\obj\Debug\Meshes3D.csprojResolveAssemblyReference.cache
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\Meshes3D\obj\Debug\Meshes3D.dll
+D:\IT\Petri Net\vmpn3d (adrian)\vmpn3d\Meshes3D\obj\Debug\Meshes3D.pdb
